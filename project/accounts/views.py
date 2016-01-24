@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from project.accounts.models import User
 from project.accounts.serializers import (
-    UserRegistrationSerializer, UserProfileSerializer, ResetPasswordSerializer
+    UserRegistrationSerializer, UserProfileSerializer
 )
 
 
@@ -66,18 +66,4 @@ class PasswordResetView(APIView):
         return obj
 
     def post(self, request, *args, **kwargs):
-        user = self.get_object()
-        user.send_reset_password_email()
-        return Response({}, status=status.HTTP_200_OK)
-
-
-class PasswordResetConfirmView(APIView):
-
-    permission_classes = (AllowAny,)
-    serializer_class = ResetPasswordSerializer
-
-    def post(self, request, *args, **kwargs):
-        serializer = ResetPasswordSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response({'errors': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-        return Response({"msg": "Password updated successfully."}, status=status.HTTP_200_OK)
+        return Response({"msg": "Reset password email submitted."}, status=status.HTTP_200_OK)
