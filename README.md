@@ -1,4 +1,4 @@
-# DRF Docs - Demo
+# DRF Docs - Demo [![Build Status](https://travis-ci.org/ekonstantinidis/drfdocs-demo.svg?branch=master)](https://travis-ci.org/ekonstantinidis/drfdocs-demo)
 The demo for DRF Docs.
 
 ### Prerequisites
