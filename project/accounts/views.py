@@ -43,6 +43,12 @@ class UserRegistrationView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
     serializer_class = UserRegistrationSerializer
 
+    def perform_create(self, serializer):
+        user = serializer.save()
+        user.set_password(serializer.validated_data['password'])
+        user.save()
+        return user
+
 
 class UserProfileView(generics.RetrieveUpdateAPIView):
     """
